@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.showUp {
+  animation: showUp 0.5s forwards ease-in-out;
+}
+.load {
+  animation: rotate 1s infinite ease-in-out;
+}
+
+@keyframes showUp {
+  0% {
+    opacity: 0;
+    scale: 0;
+  }
+  50% {
+    opacity: 1;
+    scale: 1.1;
+  }
+  100% {
+    scale: 1;
+  }
+}
+@keyframes rotate {
+  0% {
+    rotate: -360deg;
+  }
+  100% {
+    rotate: 720deg;
+  }
+}
