@@ -1,8 +1,11 @@
+"use client";
 import Link from "next/link";
+import { useState } from "react";
 import { BiEditAlt } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
 function StudentCard({ id, fName, midName, lName, age, gpa, profile }) {
-  const fullName = `${fName} ${midName} ${lName}`;
+  const [fullName] = useState(`${fName} ${midName} ${lName}`);
+  const [deletedMessageSuccess, setDeletedMessageSuccess] = useState(false);
   const handelDeleteStudent = async (id) => {
     try {
       const request = await fetch(
@@ -15,17 +18,31 @@ function StudentCard({ id, fName, midName, lName, age, gpa, profile }) {
         }
       );
       const data = request.json();
+      setDeletedMessageSuccess(true);
+      setTimeout(() => {
+        setDeletedMessageSuccess(false);
+      }, 1000);
       return data;
     } catch (error) {
       console.error(error.message);
     }
   };
   return (
-    <div className="w-64 p-4 rounded-md border border-gray-300 hover:bg-gray-100 hover:scale-105 duration-150 flex flex-col justify-center items-center gap-2 shadow-sm">
-      <div className="w-20  border-2 rounded-full border-sky-500  overflow-hidden flex justify-center items-center">
+    <div className="w-64 p-4 rounded-md border border-gray-300 hover:shadow-lg hover:border-0  duration-150  flex flex-col justify-center items-center gap-2 shadow-sm">
+      {deletedMessageSuccess ? (
+        <div className=" p-4 duration-150  rounded-md shadow-md showUp border border-sky-500 bg-sky-100 fixed bottom-10 right-10 z-50">
+          <p className="flex justify-center items-center gap-4 text-sky-800">
+            <span>
+              <MdDeleteOutline size={20} color="#0c4a6e" />
+            </span>
+            your items is deleted successfully
+          </p>
+        </div>
+      ) : null}
+      <div className="w-20 h-20  border-2 border-dashed p-2 rounded-full border-sky-500  overflow-hidden flex justify-center items-center">
         <img
           src={profile}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover rounded-full overflow-hidden"
           loading="lazy"
         />
       </div>

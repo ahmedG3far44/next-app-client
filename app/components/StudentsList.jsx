@@ -1,8 +1,11 @@
+"use client";
 import Link from "next/link";
+import { useState } from "react";
 import { BiEditAlt } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
 
 function StudentsList({ students }) {
+  const [deletedMessage, setDeletedMessage] = useState(false);
   const handelDeleteStudent = async (id) => {
     try {
       const request = await fetch(
@@ -15,30 +18,44 @@ function StudentsList({ students }) {
         }
       );
       const data = request.json();
+      setDeletedMessage(true);
+      setTimeout(() => {
+        setDeletedMessage(false);
+      }, 1000);
       return data;
     } catch (error) {
       console.error(error.message);
     }
   };
   return (
-    <div className="flex flex-col justify-start items-center  w-full">
+    <div className="flex flex-col justify-start items-center  w-full relative">
+      {deletedMessage ? (
+        <div className="fixed bottom-10 right-5 z-50 p-4 duration-200 showUp  rounded-md shadow-md border border-sky-500 bg-sky-100">
+          <p className="flex justify-center items-center gap-4 text-sky-800">
+            <span>
+              <MdDeleteOutline size={20} color="#0c4a6e" />
+            </span>
+            your items is deleted successfully
+          </p>
+        </div>
+      ) : null}
       {students.map((student) => {
         return (
           <div
             key={student.student_id}
-            className="flex justify-around items-center max-sm:gap-4  p-4 rounded-md w-full mt-8 border border-gray-200 max-sm:flex-wrap hover:bg-gray-100 duration-150 cursor-pointer"
+            className="flex justify-around items-center max-sm:gap-2  p-4 rounded-md w-full max-lg:w-64 mt-8 border max-lg:flex-wrap border-gray-200  hover:bg-gray-100 duration-150 cursor-pointer"
           >
-            <div className="w-32 mr-4 border-2 border-sky-500 overflow-hidden flex justify-center items-center rounded-full">
+            <div className="w-28  xl:mr-4 border-2  p-1 border-sky-500 overflow-hidden flex justify-center items-center rounded-full">
               <img
                 src={student.profile_image}
                 loading="lazy"
-                className="w-full h-full object-cover "
+                className="w-full h-full object-cover overflow-hidden rounded-full"
               />
             </div>
-            <div className="flex justify-start max-sm:justify-center items-center mr-8 max-sm:mr-0 gap-4 w-full text-gray-600">
+            <div className="flex justify-start max-lg:justify-center   max-sm:justify-center items-center 2xl:mr-8 max-sm:mr-0 gap-4 w-full text-gray-600">
               <Link
                 href={`/student/${student.student_id}`}
-                className="w-full text-gray-600 hover:text-sky-500 hover:underline"
+                className="w-full text-gray-600 hover:text-sky-500 hover:underline text-center"
               >
                 {`${student.first_name} ${student.middle_name}`}
               </Link>

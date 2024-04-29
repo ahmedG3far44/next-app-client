@@ -20,7 +20,7 @@ function Header() {
       </div>
       <div className="flex justify-center items-center gap-4">
         <Link
-          className="hover:text-sky-500 duration-150 flex justify-center items-center gap-2"
+          className="max-sm:hidden hover:text-sky-500 duration-150 flex justify-center items-center gap-2"
           href={"/"}
         >
           <span>
@@ -29,10 +29,18 @@ function Header() {
           Home
         </Link>
         <Link
-          className="border-2 flex justify-center gap-2 items-center text-sky-500 border-sky-500 rounded-md py-1 px-4 hover:bg-sky-500 hover:text-white duration-150"
+          className="border-2 flex max-sm:hidden justify-center gap-2 items-center text-sky-500 border-sky-500 rounded-md py-1 px-4 hover:bg-sky-500 hover:text-white duration-150"
           href={"/add"}
         >
           CREATE
+          <span className="font-bold">
+            <IoAdd size={20} />
+          </span>
+        </Link>
+        <Link
+          className="border-2 hidden max-sm:flex justify-center gap-2 items-center text-sky-500 border-sky-500 rounded-md p-2 hover:bg-sky-500 hover:text-white duration-150"
+          href={"/add"}
+        >
           <span className="font-bold">
             <IoAdd size={20} />
           </span>

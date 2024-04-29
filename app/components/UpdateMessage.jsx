@@ -1,5 +1,5 @@
 import { TiTickOutline } from "react-icons/ti";
-function Message({ successfulMessage }) {
+function UpdateMessage({ successfulMessage, id }) {
   return (
     <>
       {successfulMessage ? (
@@ -8,7 +8,7 @@ function Message({ successfulMessage }) {
             <span>
               <TiTickOutline size={20} color="green" />
             </span>
-            A new student added successfully
+            The student {id} updated successfully
           </p>
         </div>
       ) : null}
@@ -16,4 +16,4 @@ function Message({ successfulMessage }) {
   );
 }
 
-export default Message;
+export default UpdateMessage;

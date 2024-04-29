@@ -2,7 +2,7 @@ import StudentCard from "./StudentCard";
 
 function GridStudentsList({ students }) {
   return (
-    <div className="w-full flex justify-around items-center flex-wrap mt-10">
+    <div className="w-full flex justify-center max-lg:justify-center gap-4 max-sm:justify-center max-md:justify-center min-xl:justify-start max-lg:gap-4 items-center flex-wrap mt-10">
       {students.map((student) => {
         return (
           <StudentCard

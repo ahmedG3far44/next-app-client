@@ -32,11 +32,11 @@ export default function Home() {
   }, []);
   return (
     <main className="w-3/4 m-auto">
-      <nav className="p-2 rounded-md bg-gray-50 w-full flex justify-end items-center mt-2">
+      <nav className="p-1 rounded-md  w-full flex justify-end items-center mt-4 border bg-gray-50  border-gray-100">
         <div className="w-40 rounded-md p-2 gap-4 flex justify-center items-center">
           <span
             onClick={() => setLayoutStyle("grid")}
-            className="p-2 rounded-md border border-gray-200 hover:bg-gray-300 cursor-pointer duration-150"
+            className="p-2 rounded-md border border-gray-300 hover:bg-gray-300 cursor-pointer duration-150"
           >
             <LuLayoutGrid
               size={25}
@@ -45,7 +45,7 @@ export default function Home() {
           </span>
           <span
             onClick={() => setLayoutStyle("list")}
-            className="p-2 rounded-md border border-gray-200 hover:bg-gray-300 cursor-pointer duration-150"
+            className="p-2 rounded-md border border-gray-300 hover:bg-gray-300 cursor-pointer duration-150"
           >
             <TbLayoutList
               size={25}

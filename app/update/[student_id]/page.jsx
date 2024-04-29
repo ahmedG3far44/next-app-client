@@ -1,7 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import Message from "@/app/components/Message";
+import UpdateMessage from "@/app/components/UpdateMessage";
 import Link from "next/link";
 function UpdateStudentForm() {
   const { student_id } = useParams();
@@ -13,7 +13,7 @@ function UpdateStudentForm() {
     middle_name: "",
     last_name: "",
     age: 0,
-    cgpa: 0.0,
+    cgpa: 0,
     profile_image: "",
   });
 
@@ -37,7 +37,7 @@ function UpdateStudentForm() {
         middle_name: "",
         last_name: "",
         age: 0,
-        cgpa: 0.0,
+        cgpa: 0,
         profile_image: "",
       });
       navigateTo.push("/");
@@ -54,9 +54,9 @@ function UpdateStudentForm() {
   };
   return (
     <div className="w-full h-full flex justify-center items-start relative">
-      <Message successfulMessage={successfulMessage} />
+      <UpdateMessage successfulMessage={successfulMessage} id={student_id} />
       <form
-        className="w-1/3 p-4 mt-20 rounded-md border border-gray-300 shadow-md flex flex-col justify-center items-center gap-4"
+        className="w-1/3 max-sm:w-4/5 p-4 max-sm:p-2 mt-20 rounded-md border border-gray-300 shadow-md flex flex-col justify-center items-center gap-4"
         onSubmit={handleSubmitUpdateStudentInfo}
       >
         <h1 className="text-xl my-4">Update student : {student_id}</h1>
@@ -108,7 +108,6 @@ function UpdateStudentForm() {
             type="url"
             placeholder="profile image url"
             className="p-2 rounded-md bg-gray-100 border border-gray-200 w-full"
-            required
           />
         </div>
         <div className="w-full flex justify-between items-center gap-4">
@@ -126,7 +125,6 @@ function UpdateStudentForm() {
               setUpdateStudent({ ...updatedStudent, cgpa: e.target.value });
             }}
             type="number"
-            required
             placeholder="CGPA"
             className="p-2 rounded-md bg-gray-100 border border-gray-200 w-full"
           />

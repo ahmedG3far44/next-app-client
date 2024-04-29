@@ -12,7 +12,7 @@ function addStudentForm() {
     middle_name: "",
     last_name: "",
     age: 0,
-    cgpa: 0.0,
+    cgpa: 0,
     profile_image: "",
   });
   const handelSubmitAnewStudent = async (e) => {
@@ -26,15 +26,15 @@ function addStudentForm() {
         body: JSON.stringify(newStudent),
       });
       const data = request.json();
-      setSuccessfulMessage(true);
       setNewStudent({
         first_name: "",
         middle_name: "",
         last_name: "",
         age: 0,
-        cgpa: 0.0,
+        cgpa: 0,
         profile_image: "",
       });
+      setSuccessfulMessage(true);
       setTimeout(() => {
         setSuccessfulMessage(false);
       }, 1000);
@@ -45,36 +45,36 @@ function addStudentForm() {
     }
   };
   return (
-    <div className="w-full h-full flex justify-center items-start  relative">
+    <div className="w-full h-full flex justify-center items-start ">
       <Message successfulMessage={successfulMessage} />
       <form
-        className="w-1/3 p-4 mt-20 rounded-md border border-gray-300 shadow-md flex flex-col justify-center items-center gap-4"
+        className="w-1/3  max-sm:w-4/5 p-4 max-sm:p-2 mt-20 rounded-md border border-gray-300 shadow-md flex flex-col justify-center items-center gap-4"
         onSubmit={handelSubmitAnewStudent}
       >
         <h1 className="text-xl my-4">Adding new student</h1>
         <div className="flex justify-center items-center gap-4 w-full ">
           <input
-            onChange={(e) =>
-              setNewStudent({ ...newStudent, first_name: e.target.value })
-            }
+            onChange={(e) => {
+              setNewStudent({ ...newStudent, first_name: e.target.value });
+            }}
             type="text"
             placeholder="first name"
             className="p-2 rounded-md bg-gray-100 border border-gray-200 w-full"
             required
           />
           <input
-            onChange={(e) =>
-              setNewStudent({ ...newStudent, middle_name: e.target.value })
-            }
+            onChange={(e) => {
+              setNewStudent({ ...newStudent, middle_name: e.target.value });
+            }}
             type="text"
             placeholder="middle name"
             className="p-2 rounded-md bg-gray-100 border border-gray-200 w-full"
             required
           />
           <input
-            onChange={(e) =>
-              setNewStudent({ ...newStudent, last_name: e.target.value })
-            }
+            onChange={(e) => {
+              setNewStudent({ ...newStudent, last_name: e.target.value });
+            }}
             type="text"
             placeholder="last name"
             className="p-2 rounded-md bg-gray-100 border border-gray-200 w-full"
@@ -92,25 +92,23 @@ function addStudentForm() {
             type="url"
             placeholder="profile image url"
             className="p-2 rounded-md bg-gray-100 border border-gray-200 w-full"
-            required
           />
         </div>
         <div className="w-full flex justify-between items-center gap-4">
           <input
-            onChange={(e) =>
-              setNewStudent({ ...newStudent, age: e.target.value })
-            }
+            onChange={(e) => {
+              setNewStudent({ ...newStudent, age: e.target.value });
+            }}
             type="number"
             placeholder="age"
             className="p-2 rounded-md bg-gray-100 border border-gray-200 w-full"
             required
           />
           <input
-            onChange={(e) =>
-              setNewStudent({ ...newStudent, cgpa: e.target.value })
-            }
+            onChange={(e) => {
+              setNewStudent({ ...newStudent, cgpa: e.target.value });
+            }}
             type="number"
-            required
             placeholder="CGPA"
             className="p-2 rounded-md bg-gray-100 border border-gray-200 w-full"
           />
